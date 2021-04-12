@@ -1,5 +1,6 @@
-# 201-multi-vm-lbint-zones-scriptext
-Create Multiple Azure VMs in different Availability Zones with internal Standard Load Balancer and custom script extension
+# 201-vm-zone-powershell-script
+Create a single Azure VMs in a specific Availability Zones with a second existing network adapter
+# OLD .. Create a single Azure VMs in a specific Availability Zones with internal Standard Load Balancer and custom script extension
 
 INSTALL STEPS:
 Below assumes using the Azure Cloud Shell (PowerShell), with AZ ACCOUNT SET pointing to the correct subscription. 
