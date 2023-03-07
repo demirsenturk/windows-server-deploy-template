@@ -39,6 +39,15 @@
         "virtualMachineRG": {
             "type": "string"
         },
+        "virtualMachineZone": {
+            "type": [ "string" ],
+            "defaultValue": [
+                "1"
+            ],
+            "metadata": {
+            "description": "The virtual machine zones."
+            }
+        },
         "osDiskType": {
             "type": "string"
         },
@@ -55,7 +64,7 @@
             "type": "string",
             "defaultValue": "Standard_B2s",
             "metadata": {
-            "description": "VM Type in Azure: Standard_B2s or Standard_A2_v2 or Standard_F2s_v2, etc.  "
+            "description": "VM Type in Azure: Standard_B2s or Standard_A2_v2 or Standard_F2s_v2, etc."
             }
         },
         "nicDeleteOption": {
@@ -96,6 +105,20 @@
         },
         "sqlVirtualMachineName": {
             "type": "string"
+        },
+        "sqlManagement": {
+            "type": "string",
+            "defaultValue": "Full",
+            "metadata": {
+            "description": "SQL Server Management type. Values: Full, LightWeight, NoAgent"
+            }
+        },
+        "sqlVMleastPrivilegeMode": {
+            "type": "string",
+            "defaultValue": "Enabled",
+            "metadata": {
+            "description": "SQL IaaS Agent least privilege mode. Can be set to Enabled, otherwise to NotSet"
+            }
         },
         "sqlConnectivityType": {
             "type": "string"
@@ -444,9 +467,7 @@
             "identity": {
                 "type": "systemAssigned"
             },
-            "zones": [
-                "1"
-            ]
+            "zones": "[parameters('virtualMachineZone')]"
         },
         {
             "name": "[parameters('diagnosticsStorageAccountName')]",
@@ -468,9 +489,9 @@
             "location": "[parameters('sqlVirtualMachineLocation')]",
             "properties": {
                 "virtualMachineResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('sqlVirtualMachineName'))]",
-                "sqlManagement": "Full",
+                "sqlManagement": "[parameters('sqlManagement')]",
                 "SqlServerLicenseType": "[parameters('SqlServerLicenseType')]",
-                "LeastPrivilegeMode": "Enabled",
+                "LeastPrivilegeMode": "[parameters('sqlVMleastPrivilegeMode')]",
                 "AutoPatchingSettings": {
                     "Enable": true,
                     "DayOfWeek": "[parameters('sqlAutopatchingDayOfWeek')]",

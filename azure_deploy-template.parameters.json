@@ -37,6 +37,11 @@
         "virtualMachineRG": {
             "value": "" // TODO: Fill in parameter value
         },
+        "virtualMachineZone": {
+            "value": [
+                "1"
+            ]
+        },
         "osDiskType": {
             "value": "" // TODO: Fill in parameter value
         },
@@ -91,6 +96,12 @@
         },
         "sqlVirtualMachineName": {
             "value": "" // TODO: Fill in parameter value
+        },
+        "sqlManagement": {
+            "value": "Full"
+        },
+        "sqlVMleastPrivilegeMode": {
+            "value": "Enabled"
         },
         "sqlConnectivityType": {
             "value": "" // TODO: Fill in parameter value
@@ -204,11 +215,50 @@
         "isIFIEnabled": {
             "value": false // TODO: Fill in parameter value
         },
+        "licenseType": {
+            "value": "Windows_Server"
+        },
+        "SqlServerLicenseType": {
+            "value": "AHUB"
+        },
         "installscripturi": {
             "value": "" // TODO: Fill in parameter value
         },
         "command2exec": {
             "value": "" // TODO: Fill in parameter value
+        },
+        "ipConfigName": {
+            "value": "ipconfig1"
+        },
+        "SQLAuthUpdateUserName": {
+            "value": ""
+        },
+        "SQLAuthUpdatePassword": {
+            "value": ""
+        },
+        "guestConfigExtTemplateLink": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/MicrosoftGuestConfiguration.ConfigurationforWindows-1.0.0/MainTemplate.json"
+        },
+        "guestConfigExtVmName": {
+            "value": "SQLVM"
+        },
+        "guestConfigExtLocation": {
+            "value": "eastus"
+        },
+        "customScriptExtensionTemplateLink": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.CustomScriptExtension-arm-2.0.57/MainTemplate.json"
+        },
+        "customScriptExtensionTemplateUris": {
+            "value": "https://sharefileuwhoffmaweu.blob.core.windows.net/scripts/configure-server.ps1?sp=r&se=2023-02-22T05:00:53Z&sv=2021-06-08&sr=b&sig=PClx1ISsfG1SdVUjv1EZtPP7K%2BIDvqfO6XwA6%2FPyNS4%3D"
+        },
+        "customScriptExtensionVmName": {
+            "value": "SQLVM"
+        },
+        "customScriptExtensionLocation": {
+            "value": "eastus"
+        },
+        "diagnosticsStorageAccountEndPoint": {
+            "value": "https://core.windows.net/"
         }
     }
 }

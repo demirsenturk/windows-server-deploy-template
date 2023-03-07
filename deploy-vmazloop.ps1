@@ -15,7 +15,7 @@ if(!($deploymentName)){
 
 }
 
-$templateFilePath = "./azuredeploy-vmazloop.json"
-$parametersFilePath = "./azuredeploy-vmazloop.parameters.json"
+$templateFilePath = "./azure_deploy-template.json"
+$parametersFilePath = "./azure_deploy-template.parameters.json"
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
 
