@@ -3,7 +3,7 @@ Below assumes using the Azure Cloud Shell (PowerShell), with AZ ACCOUNT SET poin
 
           Step1: Copy the template and parameter json files to your Azure Cloud Shell folder, as well as the deploy-vmazloop.ps1 file
 
-          Step1: Edit the parameter file as needed with SubnetRefId, admin username & password, VM quantities, etc. 
+          Step1: Edit the parameter file as needed with subnetName, virtualNetworkId, admin username & password, diagnosticsStorageAccountName, diagnosticsStorageAccountId, sqlAutobackupStorageAccountName. 
                     ex:  PS /home/clouduser> code ./azuredeploy-vmazloop.parameters.json
 
           Step2: Download locally and review / edit the configure-server.ps1 file to execute desired PowerShell script as desired
