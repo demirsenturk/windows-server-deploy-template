@@ -3,326 +3,402 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-        "type": "string",
-        "defaultValue": "westeurope",
-        "metadata": {
-          "description": "Location for the VMs, only certain regions support zones during preview."
+            "defaultValue": "northeurope",
+            "type": "String",
+            "metadata": {
+                "description": "Location for the VMs, only certain regions support zones during preview."
             }
         },
         "networkInterfaceName1": {
-            "type": "string"
+            "defaultValue": "test-sql-ni1198",
+            "type": "String"
         },
         "enableAcceleratedNetworking": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool"
         },
         "networkSecurityGroupName": {
-            "type": "string"
+            "defaultValue": "test-SQLvm-nsg",
+            "type": "String"
         },
         "networkSecurityGroupRules": {
-            "type": "array"
+            "defaultValue": [],
+            "type": "Array"
         },
         "subnetName": {
-            "type": "string"
+            "type": "String"
         },
         "virtualNetworkId": {
-            "type": "string"
-        },
-        "virtualMachineName": {
-            "type": "string"
+            "type": "String"
         },
         "virtualMachineName1": {
-            "type": "string"
+            "defaultValue": "test-SQLvm",
+            "type": "String"
         },
         "virtualMachineComputerName1": {
-            "type": "string"
-        },
-        "virtualMachineRG": {
-            "type": "string"
+            "defaultValue": "test-SQLvm",
+            "type": "String"
         },
         "virtualMachineZone": {
-            "type": [ "string" ],
-            "defaultValue": [
-                "1"
-            ],
+            "type": "Array",
             "metadata": {
-            "description": "The virtual machine zones."
+                "description": "The virtual machine's availability zone."
             }
         },
         "osDiskType": {
-            "type": "string"
+            "defaultValue": "Premium_LRS",
+            "type": "String"
         },
         "osDiskDeleteOption": {
-            "type": "string"
+            "defaultValue": "Delete",
+            "type": "String"
         },
         "dataDisks1": {
-            "type": "array"
+            "defaultValue": [
+                {
+                    "lun": 0,
+                    "createOption": "attach",
+                    "deleteOption": "Detach",
+                    "caching": "ReadOnly",
+                    "writeAcceleratorEnabled": false,
+                    "id": null,
+                    "name": "test-SQLvm_DataDisk_0",
+                    "storageAccountType": null,
+                    "diskSizeGB": null,
+                    "diskEncryptionSet": null
+                },
+                {
+                    "lun": 1,
+                    "createOption": "attach",
+                    "deleteOption": "Detach",
+                    "caching": "None",
+                    "writeAcceleratorEnabled": false,
+                    "id": null,
+                    "name": "test-SQLvm_DataDisk_1",
+                    "storageAccountType": null,
+                    "diskSizeGB": null,
+                    "diskEncryptionSet": null
+                }
+            ],
+            "type": "Array"
         },
         "dataDiskResources1": {
-            "type": "array"
+            "defaultValue": [
+                {
+                    "name": "test-SQLvm_DataDisk_0",
+                    "sku": "Premium_LRS",
+                    "properties": {
+                        "diskSizeGB": 1024,
+                        "creationData": {
+                            "createOption": "empty"
+                        }
+                    }
+                },
+                {
+                    "name": "test-SQLvm_DataDisk_1",
+                    "sku": "Premium_LRS",
+                    "properties": {
+                        "diskSizeGB": 1024,
+                        "creationData": {
+                            "createOption": "empty"
+                        }
+                    }
+                }
+            ],
+            "type": "Array"
         },
         "virtualMachineSize": {
-            "type": "string",
             "defaultValue": "Standard_B2s",
+            "type": "String",
             "metadata": {
-            "description": "VM Type in Azure: Standard_B2s or Standard_A2_v2 or Standard_F2s_v2, etc."
+                "description": "VM Type in Azure: Standard_B2s or Standard_A2_v2 or Standard_F2s_v2, etc."
             }
         },
         "nicDeleteOption": {
-            "type": "string"
+            "defaultValue": "Detach",
+            "type": "String"
         },
         "adminUsername": {
-            "type": "string",
+            "type": "String",
             "metadata": {
-            "description": "Username for the local admin in the Virtual Machine."
+                "description": "Username for the local admin in the Virtual Machine."
             }
         },
         "adminPassword": {
-            "type": "secureString"
+            "type": "SecureString"
         },
         "patchMode": {
-            "type": "string"
+            "defaultValue": "Manual",
+            "type": "String"
         },
         "enableHotpatching": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool",
+            "metadata": {
+                "description": "true"
+            }
         },
         "diagnosticsStorageAccountName": {
-            "type": "string"
+            "type": "String"
         },
         "diagnosticsStorageAccountId": {
-            "type": "string"
-        },
-        "diagnosticsStorageAccountType": {
-            "type": "string"
-        },
-        "diagnosticsStorageAccountKind": {
-            "type": "string"
-        },
-        "zone": {
-            "type": "string"
+            "type": "String"
         },
         "sqlVirtualMachineLocation": {
-            "type": "string"
+            "defaultValue": "northeurope",
+            "type": "String"
         },
         "sqlVirtualMachineName": {
-            "type": "string"
+            "defaultValue": "test-SQLvm",
+            "type": "String"
         },
         "sqlManagement": {
-            "type": "string",
             "defaultValue": "Full",
+            "type": "String",
             "metadata": {
-            "description": "SQL Server Management type. Values: Full, LightWeight, NoAgent"
+                "description": "SQL Server Management type. Values: Full, LightWeight, NoAgent"
             }
         },
         "sqlVMleastPrivilegeMode": {
-            "type": "string",
             "defaultValue": "Enabled",
+            "type": "String",
             "metadata": {
-            "description": "SQL IaaS Agent least privilege mode. Can be set to Enabled, otherwise to NotSet"
+                "description": "SQL IaaS Agent least privilege mode. Can be set to Enabled, otherwise to NotSet"
             }
         },
         "sqlConnectivityType": {
-            "type": "string"
+            "defaultValue": "Private",
+            "type": "String"
         },
         "sqlPortNumber": {
-            "type": "int"
-        },
-        "sqlStorageDisksCount": {
-            "type": "int"
+            "defaultValue": 1433,
+            "type": "Int"
         },
         "sqlStorageWorkloadType": {
-            "type": "string"
+            "defaultValue": "OLTP",
+            "type": "String"
         },
         "sqlStorageDisksConfigurationType": {
-            "type": "string"
-        },
-        "sqlStorageStartingDeviceId": {
-            "type": "int"
-        },
-        "sqlStorageDeploymentToken": {
-            "type": "int"
+            "defaultValue": "NEW",
+            "type": "String"
         },
         "sqlAutopatchingDayOfWeek": {
-            "type": "string"
+            "defaultValue": "Sunday",
+            "type": "String"
         },
         "sqlAutopatchingStartHour": {
-            "type": "string"
+            "defaultValue": "2",
+            "type": "String"
         },
         "sqlAutopatchingWindowDuration": {
-            "type": "string"
+            "defaultValue": "60",
+            "type": "String"
         },
         "sqlAutobackupRetentionPeriod": {
-            "type": "string"
+            "defaultValue": "30",
+            "type": "String"
         },
         "sqlAutobackupStorageAccountName": {
-            "type": "string"
-        },
-        "sqlAutobackupStorageAccountType": {
-            "type": "string"
-        },
-        "sqlAutobackupStorageAccountKind": {
-            "type": "string"
+            "type": "String"
         },
         "sqlAutobackupStorageContainerName": {
-            "type": "string"
+            "defaultValue": "sqlvmtest",
+            "type": "String"
         },
         "backupSystemDbs": {
-            "type": "string"
+            "defaultValue": "true",
+            "type": "String"
         },
         "backupScheduleType": {
-            "type": "string"
+            "defaultValue": "Automated",
+            "type": "String"
         },
         "dataPath": {
-            "type": "string"
+            "defaultValue": "F://data",
+            "type": "String"
         },
         "dataDisksLUNs": {
-            "type": "array"
+            "defaultValue": [
+                0
+            ],
+            "type": "Array"
         },
         "logPath": {
-            "type": "string"
+            "defaultValue": "G://log",
+            "type": "String"
         },
         "logDisksLUNs": {
-            "type": "array"
+            "defaultValue": [
+                1
+            ],
+            "type": "Array"
         },
         "tempDbPath": {
-            "type": "string"
+            "defaultValue": "D://tempDb",
+            "type": "String"
         },
         "dataFileCount": {
-            "type": "int"
+            "defaultValue": 4,
+            "type": "Int"
         },
         "dataFileSize": {
-            "type": "int"
+            "defaultValue": 8,
+            "type": "Int"
         },
         "dataGrowth": {
-            "type": "int"
+            "defaultValue": 64,
+            "type": "Int"
         },
         "logFileSize": {
-            "type": "int"
+            "defaultValue": 8,
+            "type": "Int"
         },
         "logGrowth": {
-            "type": "int"
+            "defaultValue": 64,
+            "type": "Int"
         },
         "SQLSystemDbOnDataDisk": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool"
         },
         "rServicesEnabled": {
-            "type": "string"
+            "defaultValue": "false",
+            "type": "String"
         },
         "maxdop": {
-            "type": "int"
+            "defaultValue": 0,
+            "type": "Int"
         },
         "isOptimizeForAdHocWorkloadsEnabled": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool"
         },
         "collation": {
-            "type": "string"
+            "defaultValue": "SQL_Latin1_General_CP1_CI_AS",
+            "type": "String"
         },
         "minServerMemoryMB": {
-            "type": "int"
+            "defaultValue": 0,
+            "type": "Int"
         },
         "maxServerMemoryMB": {
-            "type": "int"
+            "defaultValue": 2147483647,
+            "type": "Int"
         },
         "isLPIMEnabled": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool"
         },
         "isIFIEnabled": {
-            "type": "bool"
+            "defaultValue": false,
+            "type": "Bool"
         },
         "licenseType": {
-            "type": "string",
             "defaultValue": "Windows_Server",
+            "type": "String",
             "metadata": {
-            "description": "licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None"
+                "description": "licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None"
             }
         },
         "SqlServerLicenseType": {
-            "type": "string",
             "defaultValue": "AHUB",
+            "type": "String",
             "metadata": {
-            "description": "licenseType must be AHUB to activate Azure Hybrid Benefit for Windows Server, otherwise PAYG"
+                "description": "licenseType must be AHUB to activate Azure Hybrid Benefit for Windows Server, otherwise PAYG"
             }
-        },      
+        },
+        "KeyVaultCredentialName": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "KeyVaultCredentialEnable": {
+            "defaultValue": false,
+            "type": "Bool",
+            "metadata": {
+                "description": "Enable or disable key vault credential setting."
+            }
+        },
         "installscripturi": {
-            "type": "string"
+            "type": "String"
         },
         "command2exec": {
-            "type": "string"
+            "type": "String"
         },
         "ipConfigName": {
-            "type": "string",
             "defaultValue": "ipconfig1",
+            "type": "String",
             "metadata": {
-            "description": "The name for the ip configuration of the Network Interface"
+                "description": "The name for the ip configuration of the Network Interface"
             }
         },
         "SQLAuthUpdateUserName": {
-            "type": "string",
             "defaultValue": "",
+            "type": "String",
             "metadata": {
-            "description": ""
+                "description": ""
             }
         },
         "SQLAuthUpdatePassword": {
-            "type": "string",
             "defaultValue": "",
+            "type": "String",
             "metadata": {
-            "description": ""
+                "description": ""
             }
         },
         "guestConfigExtTemplateLink": {
-            "type": "string",
             "defaultValue": "https://catalogartifact.azureedge.net/publicartifacts/MicrosoftGuestConfiguration.ConfigurationforWindows-1.0.0/MainTemplate.json",
+            "type": "String",
             "metadata": {
-            "description": "URI for the guest configuration extension"
+                "description": "URI for the guest configuration extension"
             }
         },
         "guestConfigExtVmName": {
-            "type": "string",
             "defaultValue": "SQLVM",
+            "type": "String",
             "metadata": {
-            "description": "The name of the VM for guest configuration extension"
+                "description": "The name of the VM for guest configuration extension"
             }
         },
         "guestConfigExtLocation": {
-            "type": "string",
             "defaultValue": "eastus",
+            "type": "String",
             "metadata": {
-            "description": "Location for guest configuration extension"
+                "description": "Location for guest configuration extension"
             }
         },
         "customScriptExtensionTemplateLink": {
-            "type": "string",
             "defaultValue": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.CustomScriptExtension-arm-2.0.57/MainTemplate.json",
+            "type": "String",
             "metadata": {
-            "description": "Arm Template Link for Custom Script Extension for Windows"
+                "description": "Arm Template Link for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionTemplateUris": {
-            "type": "string",
             "defaultValue": "https://sharefileuwhoffmaweu.blob.core.windows.net/scripts/configure-server.ps1?sp=r&se=2023-02-22T05:00:53Z&sv=2021-06-08&sr=b&sig=PClx1ISsfG1SdVUjv1EZtPP7K%2BIDvqfO6XwA6%2FPyNS4%3D",
+            "type": "String",
             "metadata": {
-            "description": "File URI for Custom Script Extension for Windows"
+                "description": "File URI for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionVmName": {
-            "type": "string",
             "defaultValue": "SQLVM",
+            "type": "String",
             "metadata": {
-            "description": "The name of the VM for Custom Script Extension for Windows"
+                "description": "The name of the VM for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionLocation": {
-            "type": "string",
             "defaultValue": "eastus",
+            "type": "String",
             "metadata": {
-            "description": "Location for Custom Script Extension for Windows"
+                "description": "Location for Custom Script Extension for Windows"
             }
         },
         "diagnosticsStorageAccountEndPoint": {
-            "type": "string",
             "defaultValue": "https://core.windows.net/",
+            "type": "String",
             "metadata": {
-            "description": "Service End Point for Diagnostics Storage Account"
+                "description": "Service End Point for Diagnostics Storage Account"
             }
         }
     },
@@ -335,9 +411,9 @@
     },
     "resources": [
         {
-            "name": "[parameters('networkInterfaceName1')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2021-08-01",
+            "name": "[parameters('networkInterfaceName1')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]"
@@ -361,39 +437,42 @@
             }
         },
         {
-            "name": "[parameters('networkSecurityGroupName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-02-01",
+            "name": "[parameters('networkSecurityGroupName')]",
             "location": "[parameters('location')]",
             "properties": {
                 "securityRules": "[parameters('networkSecurityGroupRules')]"
             }
         },
         {
-            "name": "[parameters('dataDiskResources1')[copyIndex()].name]",
             "type": "Microsoft.Compute/disks",
             "apiVersion": "2022-03-02",
+            "name": "[parameters('dataDiskResources1')[copyIndex()].name]",
             "location": "[parameters('location')]",
-            "properties": "[parameters('dataDiskResources1')[copyIndex()].properties]",
             "sku": {
                 "name": "[parameters('dataDiskResources1')[copyIndex()].sku]"
             },
+            "zones": "[if(contains(parameters('dataDiskResources1')[copyIndex()].sku, '_ZRS'), json('null'), array(1))]",
+            "properties": "[parameters('dataDiskResources1')[copyIndex()].properties]",
             "copy": {
                 "name": "managedDiskResources",
                 "count": "[length(parameters('dataDiskResources1'))]"
-            },
-            "zones": "[if(contains(parameters('dataDiskResources1')[copyIndex()].sku, '_ZRS'), json('null'), array(1))]"
+            }
         },
         {
-            "name": "[parameters('virtualMachineName1')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2022-03-01",
+            "name": "[parameters('virtualMachineName1')]",
             "location": "[parameters('location')]",
             "dependsOn": [
                 "managedDiskResources",
-                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName1'))]",
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('diagnosticsStorageAccountName'))]"
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName1'))]"
             ],
+            "zones": "[parameters('virtualMachineZone')]",
+            "identity": {
+                "type": "systemAssigned"
+            },
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('virtualMachineSize')]"
@@ -460,33 +539,20 @@
                 "licenseType": "[parameters('licenseType')]",
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": true
+                        "enabled": true,
+                        "storageUri": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('diagnosticsStorageAccountName')),'2015-06-15').primaryEndpoints.blob]"
                     }
                 }
-            },
-            "identity": {
-                "type": "systemAssigned"
-            },
-            "zones": "[parameters('virtualMachineZone')]"
-        },
-        {
-            "name": "[parameters('diagnosticsStorageAccountName')]",
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2021-01-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "minimumTlsVersion": "TLS1_2"
-            },
-            "kind": "[parameters('diagnosticsStorageAccountKind')]",
-            "sku": {
-                "name": "[parameters('diagnosticsStorageAccountType')]"
             }
         },
         {
-            "name": "[parameters('sqlVirtualMachineName')]",
             "type": "Microsoft.SqlVirtualMachine/SqlVirtualMachines",
             "apiVersion": "2022-07-01-preview",
+            "name": "[parameters('sqlVirtualMachineName')]",
             "location": "[parameters('sqlVirtualMachineLocation')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines', parameters('sqlVirtualMachineName'))]"
+            ],
             "properties": {
                 "virtualMachineResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('sqlVirtualMachineName'))]",
                 "sqlManagement": "[parameters('sqlManagement')]",
@@ -504,13 +570,13 @@
                     "EnableEncryption": false,
                     "BackupSystemDbs": "[parameters('backupSystemDbs')]",
                     "BackupScheduleType": "[parameters('backupScheduleType')]",
-                    "StorageAccountUrl": "[reference(resourceId('DataLakeStorageTest', 'Microsoft.Storage/storageAccounts', parameters('sqlAutobackupStorageAccountName')), '2021-01-01').primaryEndpoints['blob']]",
-                    "StorageAccessKey": "[first(listKeys(resourceId('DataLakeStorageTest', 'Microsoft.Storage/storageAccounts', parameters('sqlAutobackupStorageAccountName')), '2021-01-01').keys).value]",
+                    "StorageAccountUrl": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('sqlAutobackupStorageAccountName')),'2015-06-15').primaryEndpoints.blob]",
+                    "StorageAccessKey": "[first(listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('sqlAutobackupStorageAccountName')), '2021-01-01').keys).value]",
                     "StorageContainerName": "[parameters('sqlAutobackupStorageContainerName')]"
                 },
                 "KeyVaultCredentialSettings": {
-                    "Enable": false,
-                    "CredentialName": ""
+                    "Enable": "[parameters('KeyVaultCredentialEnable')]",
+                    "CredentialName": "[parameters('KeyVaultCredentialName')]"
                 },
                 "StorageConfigurationSettings": {
                     "DiskConfigurationType": "[parameters('sqlStorageDisksConfigurationType')]",
@@ -553,15 +619,15 @@
                         "isIFIEnabled": "[parameters('isIFIEnabled')]"
                     }
                 }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('sqlVirtualMachineName'))]"
-            ]
+            }
         },
         {
-            "name": "MicrosoftGuestConfiguration.ConfigurationforWindows",
-            "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "name": "MicrosoftGuestConfiguration.ConfigurationforWindows",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName1'))]"
+            ],
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
@@ -575,15 +641,15 @@
                         "value": "[parameters('guestConfigExtLocation')]"
                     }
                 }
-            },
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName1'))]"
-            ]
+            }
         },
         {
-            "name": "Microsoft.CustomScriptExtension",
-            "apiVersion": "2015-01-01",
             "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "name": "Microsoft.CustomScriptExtension",
+            "dependsOn": [
+                "MicrosoftGuestConfiguration.ConfigurationforWindows"
+            ],
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
@@ -600,16 +666,16 @@
                         "value": "[parameters('customScriptExtensionLocation')]"
                     }
                 }
-            },
-            "dependsOn": [
-                "MicrosoftGuestConfiguration.ConfigurationforWindows"
-            ]
+            }
         },
         {
-            "name": "[concat(parameters('virtualMachineName1'),'/', variables('diagnosticsExtensionName'))]",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "apiVersion": "2018-10-01",
+            "name": "[concat(parameters('virtualMachineName1'),'/', variables('diagnosticsExtensionName'))]",
             "location": "[parameters('location')]",
+            "dependsOn": [
+                "Microsoft.CustomScriptExtension"
+            ],
             "properties": {
                 "publisher": "Microsoft.Azure.Diagnostics",
                 "type": "IaaSDiagnostics",
@@ -891,15 +957,12 @@
                     "storageAccountKey": "[first(listKeys(parameters('diagnosticsStorageAccountId'),'2021-01-01').keys).value]",
                     "storageAccountEndPoint": "[parameters('diagnosticsStorageAccountEndPoint')]"
                 }
-            },
-            "dependsOn": [
-                "Microsoft.CustomScriptExtension"
-            ]
+            }
         }
     ],
     "outputs": {
         "adminUsername": {
-            "type": "string",
+            "type": "String",
             "value": "[parameters('adminUsername')]"
         }
     }

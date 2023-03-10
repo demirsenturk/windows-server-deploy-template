@@ -2,263 +2,35 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
-            "value": "westeurope"
-        },
-        "networkInterfaceName1": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "enableAcceleratedNetworking": {
-            "value": false // TODO: Fill in parameter value
-        },
-        "networkSecurityGroupName": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "networkSecurityGroupRules": {
-            "value": [
-                // TODO: Fill in parameter value
-            ]
-        },
         "subnetName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "test_sql_subnet"
         },
         "virtualNetworkId": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "virtualMachineName": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "virtualMachineName1": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "virtualMachineComputerName1": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "virtualMachineRG": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "/subscriptions/41ffef8c-4290-4124-9806-02a89b033d9c/resourceGroups/test_sql_vm/providers/Microsoft.Network/virtualNetworks/testsqlvm"
         },
         "virtualMachineZone": {
-            "value": [
-                "1"
-            ]
-        },
-        "osDiskType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "osDiskDeleteOption": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "dataDisks1": {
-            "value": [
-                // TODO: Fill in parameter value
-            ]
-        },
-        "dataDiskResources1": {
-            "value": [
-                // TODO: Fill in parameter value
-            ]
-        },
-        "virtualMachineSize": {
-            "value": "Standard_B2s"
-        },
-        "nicDeleteOption": {
-            "value": "" // TODO: Fill in parameter value
+            "value": ["1"]
         },
         "adminUsername": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "adminuser101"
         },
         "adminPassword": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "patchMode": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "enableHotpatching": {
-            "value": false // TODO: Fill in parameter value
+            "value": "Password.101"
         },
         "diagnosticsStorageAccountName": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "csatestsqlvm"
         },
         "diagnosticsStorageAccountId": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "diagnosticsStorageAccountType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "diagnosticsStorageAccountKind": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "zone": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlVirtualMachineLocation": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlVirtualMachineName": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlManagement": {
-            "value": "Full"
-        },
-        "sqlVMleastPrivilegeMode": {
-            "value": "Enabled"
-        },
-        "sqlConnectivityType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlPortNumber": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "sqlStorageDisksCount": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "sqlStorageWorkloadType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlStorageDisksConfigurationType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlStorageStartingDeviceId": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "sqlStorageDeploymentToken": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "sqlAutopatchingDayOfWeek": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutopatchingStartHour": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutopatchingWindowDuration": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutobackupRetentionPeriod": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "/subscriptions/41ffef8c-4290-4124-9806-02a89b033d9c/resourceGroups/test_sql_vm/providers/Microsoft.Storage/storageAccounts/csatestsqlvm"
         },
         "sqlAutobackupStorageAccountName": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutobackupStorageAccountType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutobackupStorageAccountKind": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "sqlAutobackupStorageContainerName": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "backupSystemDbs": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "backupScheduleType": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "dataPath": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "dataDisksLUNs": {
-            "value": [
-                // TODO: Fill in parameter value
-            ]
-        },
-        "logPath": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "logDisksLUNs": {
-            "value": [
-                // TODO: Fill in parameter value
-            ]
-        },
-        "tempDbPath": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "dataFileCount": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "dataFileSize": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "dataGrowth": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "logFileSize": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "logGrowth": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "SQLSystemDbOnDataDisk": {
-            "value": false // TODO: Fill in parameter value
-        },
-        "rServicesEnabled": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "maxdop": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "isOptimizeForAdHocWorkloadsEnabled": {
-            "value": false // TODO: Fill in parameter value
-        },
-        "collation": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "minServerMemoryMB": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "maxServerMemoryMB": {
-            "value": 0 // TODO: Fill in parameter value
-        },
-        "isLPIMEnabled": {
-            "value": false // TODO: Fill in parameter value
-        },
-        "isIFIEnabled": {
-            "value": false // TODO: Fill in parameter value
-        },
-        "licenseType": {
-            "value": "Windows_Server"
-        },
-        "SqlServerLicenseType": {
-            "value": "AHUB"
+            "value": "csatestsqlvm"
         },
         "installscripturi": {
-            "value": "" // TODO: Fill in parameter value
+            "value": "https://<storageaccountname>.blob.core.windows.net/scripts/configure-server.ps1"
         },
         "command2exec": {
-            "value": "" // TODO: Fill in parameter value
-        },
-        "ipConfigName": {
-            "value": "ipconfig1"
-        },
-        "SQLAuthUpdateUserName": {
-            "value": ""
-        },
-        "SQLAuthUpdatePassword": {
-            "value": ""
-        },
-        "guestConfigExtTemplateLink": {
-            "value": "https://catalogartifact.azureedge.net/publicartifacts/MicrosoftGuestConfiguration.ConfigurationforWindows-1.0.0/MainTemplate.json"
-        },
-        "guestConfigExtVmName": {
-            "value": "SQLVM"
-        },
-        "guestConfigExtLocation": {
-            "value": "eastus"
-        },
-        "customScriptExtensionTemplateLink": {
-            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.CustomScriptExtension-arm-2.0.57/MainTemplate.json"
-        },
-        "customScriptExtensionTemplateUris": {
-            "value": "https://sharefileuwhoffmaweu.blob.core.windows.net/scripts/configure-server.ps1?sp=r&se=2023-02-22T05:00:53Z&sv=2021-06-08&sr=b&sig=PClx1ISsfG1SdVUjv1EZtPP7K%2BIDvqfO6XwA6%2FPyNS4%3D"
-        },
-        "customScriptExtensionVmName": {
-            "value": "SQLVM"
-        },
-        "customScriptExtensionLocation": {
-            "value": "eastus"
-        },
-        "diagnosticsStorageAccountEndPoint": {
-            "value": "https://core.windows.net/"
+            "value": "powershell.exe -ExecutionPolicy Unrestricted -File configure-server.ps1"
         }
     }
 }
