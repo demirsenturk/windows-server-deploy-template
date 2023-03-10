@@ -214,7 +214,7 @@
             "type": "String"
         },
         "dataPath": {
-            "defaultValue": "F://data",
+            "defaultValue": "F:\\data",
             "type": "String"
         },
         "dataDisksLUNs": {
@@ -224,7 +224,7 @@
             "type": "Array"
         },
         "logPath": {
-            "defaultValue": "G://log",
+            "defaultValue": "G:\\log",
             "type": "String"
         },
         "logDisksLUNs": {
@@ -234,7 +234,7 @@
             "type": "Array"
         },
         "tempDbPath": {
-            "defaultValue": "D://tempDb",
+            "defaultValue": "D:\\tempDb",
             "type": "String"
         },
         "dataFileCount": {
@@ -353,14 +353,14 @@
             }
         },
         "guestConfigExtVmName": {
-            "defaultValue": "SQLVM",
+            "defaultValue": "test-SQLvm",
             "type": "String",
             "metadata": {
                 "description": "The name of the VM for guest configuration extension"
             }
         },
         "guestConfigExtLocation": {
-            "defaultValue": "eastus",
+            "defaultValue": "northeurope",
             "type": "String",
             "metadata": {
                 "description": "Location for guest configuration extension"
@@ -374,21 +374,21 @@
             }
         },
         "customScriptExtensionTemplateUris": {
-            "defaultValue": "https://sharefileuwhoffmaweu.blob.core.windows.net/scripts/configure-server.ps1?sp=r&se=2023-02-22T05:00:53Z&sv=2021-06-08&sr=b&sig=PClx1ISsfG1SdVUjv1EZtPP7K%2BIDvqfO6XwA6%2FPyNS4%3D",
+            "defaultValue": "https://csatestsqlvm.blob.core.windows.net/configureserver/configure-server.ps1?sp=r&st=2023-03-10T16:25:40Z&se=2023-03-11T00:25:40Z&spr=https&sv=2021-12-02&sr=b&sig=8jGJDpOW%2FHL%2FJx%2FuKB7opbh0lh2n8Cihyl5WpdSb0%2Fk%3D",
             "type": "String",
             "metadata": {
                 "description": "File URI for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionVmName": {
-            "defaultValue": "SQLVM",
+            "defaultValue": "test-SQLvm",
             "type": "String",
             "metadata": {
                 "description": "The name of the VM for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionLocation": {
-            "defaultValue": "eastus",
+            "defaultValue": "northeurope",
             "type": "String",
             "metadata": {
                 "description": "Location for Custom Script Extension for Windows"
