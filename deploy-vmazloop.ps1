@@ -3,18 +3,10 @@
 param(
  [Parameter(Mandatory=$True)]
  [string]
- $resourceGroupName,
- [Parameter(Mandatory=$False)]
- [string]
- $deploymentName
+ $resourceGroupName
 )
 
-if(!($deploymentName)){
-    $deploymentName = "SQLvmAZloop1"
-} else {
-
-}
-
+$deploymentName = "sqlvmazloop1test"
 $templateFilePath = "./azure_deploy-template.json"
 $parametersFilePath = "./azure_deploy-template.parameters.json"
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
