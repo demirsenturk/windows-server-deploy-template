@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subnetName": {
-            "value": "test_sql_subnet"
+            "value": "testsqlSubnet"
         },
         "virtualNetworkId": {
-            "value": "/subscriptions/41ffef8c-4290-4124-9806-02a89b033d9c/resourceGroups/test_sql_vm/providers/Microsoft.Network/virtualNetworks/testsqlvm"
+            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/testSQLvmRsg/providers/Microsoft.Network/virtualNetworks/testsqlVN"
         },
         "virtualMachineZone": {
-            "value": ["1"]
+            "value": []
         },
         "adminUsername": {
             "value": "adminuser101"
@@ -18,16 +18,16 @@
             "value": "Password.101"
         },
         "diagnosticsStorageAccountName": {
-            "value": "csatestsqlvm"
+            "value": "sqlvmdiagnosticsstorage"
         },
         "diagnosticsStorageAccountId": {
-            "value": "/subscriptions/41ffef8c-4290-4124-9806-02a89b033d9c/resourceGroups/test_sql_vm/providers/Microsoft.Storage/storageAccounts/csatestsqlvm"
+            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/testSQLvmRsg/providers/Microsoft.Storage/storageAccounts/sqlvmdiagnosticsstorage"
         },
         "sqlAutobackupStorageAccountName": {
-            "value": "csatestsqlvm"
+            "value": "sqlvmdiagnosticsstorage"
         },
         "installscripturi": {
-            "value": "https://<storageaccountname>.blob.core.windows.net/scripts/configure-server.ps1"
+            "value": "https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1"
         },
         "command2exec": {
             "value": "powershell.exe -ExecutionPolicy Unrestricted -File configure-server.ps1"

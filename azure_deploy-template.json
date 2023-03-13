@@ -374,7 +374,7 @@
             }
         },
         "customScriptExtensionTemplateUris": {
-            "defaultValue": "https://csatestsqlvm.blob.core.windows.net/configureserver/configure-server.ps1?sp=r&st=2023-03-10T16:25:40Z&se=2023-03-11T00:25:40Z&spr=https&sv=2021-12-02&sr=b&sig=8jGJDpOW%2FHL%2FJx%2FuKB7opbh0lh2n8Cihyl5WpdSb0%2Fk%3D",
+            "defaultValue": "https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1",
             "type": "String",
             "metadata": {
                 "description": "File URI for Custom Script Extension for Windows"
@@ -657,7 +657,7 @@
                 },
                 "parameters": {
                     "fileUris": {
-                        "value": "[parameters('customScriptExtensionTemplateUris')]"
+                        "value": "[parameters('installscripturi')]"
                     },
                     "vmName": {
                         "value": "[parameters('customScriptExtensionVmName')]"
