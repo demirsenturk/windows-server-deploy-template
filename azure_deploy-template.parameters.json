@@ -27,7 +27,7 @@
             "value": "sqlvmautobackupsstorage"
         },
         "installscripturi": {
-            "value": "https://demirsblobstorage.blob.core.windows.net/scripts/configure-server.ps1?sp=r&st=2023-03-15T15:26:48Z&se=2023-03-15T23:26:48Z&spr=https&sv=2021-12-02&sr=b&sig=zVRF1yEoyg0eMfkT5kv7KLmpqTNe2QK%2B2EZQkqBLFUc%3D"
+            "value": "https://demirsblobstorage.blob.core.windows.net/scripts/configure-server.ps1?sp=r&st=2023-03-16T13:35:53Z&se=2023-03-30T20:35:53Z&spr=https&sv=2021-12-02&sr=b&sig=K%2FmdQqpshXzLk4VvPHdLwR0OJqoaMfxlxL7X7ae8EHM%3D"
         },
         "command2exec": {
             "value": "powershell.exe -ExecutionPolicy Unrestricted -File configure-server.ps1"
