@@ -127,16 +127,22 @@
         "adminPassword": {
             "type": "SecureString"
         },
-        "patchMode": {
-            "defaultValue": "Manual",
-            "type": "String"
-        },
         "enableHotpatching": {
-            "defaultValue": false,
+            "defaultValue": true,
             "type": "Bool",
             "metadata": {
                 "description": "true"
             }
+        },
+        "patchMode": {
+            "defaultValue": "AutomaticByPlatform",
+            "type": "String",
+            "metadata": {
+                "description": "Choose AutomaticByPlatform to enable Hotpatching otherwise, Manual."
+            }
+        },
+        "rebootSetting": {
+            "value": "Never"
         },
         "diagnosticsStorageAccountName": {
             "type": "String"
@@ -318,6 +324,19 @@
                 "description": "Enable or disable key vault credential setting."
             }
         },
+        "imageReference": {
+            "defaultValue": 
+                    {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2022-datacenter-azure-edition-core",
+                        "version": "latest"
+                    },
+            "type": "Array",
+            "metadata": {
+                "description": "Image Reference for the deployment."
+            }
+        },
         "installscripturi": {
             "type": "String"
         },
@@ -485,12 +504,7 @@
                         },
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
-                    "imageReference": {
-                        "publisher": "microsoftsqlserver",
-                        "offer": "sql2022-ws2022",
-                        "sku": "enterprise-gen2",
-                        "version": "latest"
-                    },
+                    "imageReference": "[parameters('imageReference')]",
                     "copy": [
                         {
                             "name": "dataDisks",
@@ -528,11 +542,14 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPassword')]",
                     "windowsConfiguration": {
-                        "enableAutomaticUpdates": false,
+                        "enableAutomaticUpdates": true,
                         "provisionVmAgent": true,
                         "patchSettings": {
                             "enableHotpatching": "[parameters('enableHotpatching')]",
-                            "patchMode": "[parameters('patchMode')]"
+                            "patchMode": "[parameters('patchMode')]",
+                            "automaticByPlatformSettings": {
+                                "rebootSetting": "[parameters('rebootSetting')]"
+                            }
                         }
                     }
                 },
