@@ -8,6 +8,7 @@ param subnetName string
 param virtualNetworkId string
 param virtualMachineName1 string = 'test-vm-server1'
 param virtualMachineComputerName1 string = 'test-vm-server1'
+param installscripturi string
 
 @description('The virtual machine\'s availability zone.')
 param virtualMachineZone array
@@ -35,27 +36,15 @@ param diagnosticsStorageAccountId string
 
 @description('licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None')
 param licenseType string = 'Windows_Server'
-param KeyVaultCredentialName string = ''
-
-@description('Enable or disable key vault credential setting.')
-param KeyVaultCredentialEnable bool = false
-param installscripturi string
-param command2exec string
 
 @description('The name for the ip configuration of the Network Interface')
 param ipConfigName string = 'ipconfig1'
-
-@description('URI for the guest configuration extension')
-param guestConfigExtTemplateLink string = 'https://catalogartifact.azureedge.net/publicartifacts/MicrosoftGuestConfiguration.ConfigurationforWindows-1.0.0/MainTemplate.json'
 
 @description('The name of the VM for guest configuration extension')
 param guestConfigExtVmName string = 'test-vm-server1'
 
 @description('Location for guest configuration extension')
 param guestConfigExtLocation string = 'northeurope'
-
-@description('Arm Template Link for Custom Script Extension for Windows')
-param customScriptExtensionTemplateLink string = 'https://catalogartifact.azureedge.net/publicartifacts/Microsoft.CustomScriptExtension-arm-2.0.57/MainTemplate.json'
 
 @description('File URI for Custom Script Extension for Windows')
 param customScriptExtensionTemplateUris string = 'https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1'
@@ -68,6 +57,34 @@ param customScriptExtensionLocation string = 'northeurope'
 
 @description('Service End Point for Diagnostics Storage Account')
 param diagnosticsStorageAccountEndPoint string = 'https://core.windows.net/'
+
+param dataDisks1 array = [
+  {
+    lun: 0
+    createOption: 'attach'
+    deleteOption: 'Detach'
+    caching: 'ReadOnly'
+    writeAcceleratorEnabled: false
+    id: null
+    name: 'servervm_DataDisk_0'
+    storageAccountType: null
+    diskSizeGB: null
+    diskEncryptionSet: null
+  }
+]
+
+param dataDiskResources1 array = [
+  {
+    name: 'servervm_DataDisk_0'
+    sku: 'Premium_LRS'
+    properties: {
+      diskSizeGB: 1024
+      creationData: {
+        createOption: 'empty'
+      }
+    }
+  }
+]
 
 @secure()
 param arguments string = ' '
@@ -116,6 +133,16 @@ resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2019-02-0
   }
 }
 
+resource dataDiskResources1_name 'Microsoft.Compute/disks@2022-03-02' = [for item in dataDiskResources1: {
+  name: item.name
+  location: location
+  sku: {
+    name: item.sku
+  }
+  zones: (contains(item.sku, '_ZRS') ? null : array(1))
+  properties: item.properties
+}]
+
 resource virtualMachine1 'Microsoft.Compute/virtualMachines@2022-03-01' = {
   name: virtualMachineName1
   location: location
@@ -141,6 +168,18 @@ resource virtualMachine1 'Microsoft.Compute/virtualMachines@2022-03-01' = {
         sku: '2022-datacenter-azure-edition-core'
         version: 'latest'
       }
+      dataDisks: [for item in dataDisks1: {
+        lun: item.lun
+        createOption: item.createOption
+        caching: item.caching
+        diskSizeGB: item.diskSizeGB
+        managedDisk: {
+          id: (item.id ?? ((item.name == null) ? null : resourceId('Microsoft.Compute/disks', item.name)))
+          storageAccountType: item.storageAccountType
+        }
+        deleteOption: item.deleteOption
+        writeAcceleratorEnabled: item.writeAcceleratorEnabled
+      }]
     }
     networkProfile: {
       networkInterfaces: [
@@ -179,6 +218,9 @@ resource virtualMachine1 'Microsoft.Compute/virtualMachines@2022-03-01' = {
       }
     }
   }
+  dependsOn: [
+    dataDiskResources1_name
+  ]
 }
 
 resource vmName_AzurePolicyforWindows 'Microsoft.Compute/virtualMachines/extensions@2019-07-01' = {
