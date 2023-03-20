@@ -1,11 +1,11 @@
 @description('Location for the VMs, only certain regions support zones during preview.')
 param location string = 'northeurope'
+param subnetName string
+param virtualNetworkId string
 param networkInterfaceName1 string = 'test-ni1198'
 param enableAcceleratedNetworking bool = false
 param networkSecurityGroupName string = 'test-vm-server-nsg'
 param networkSecurityGroupRules array = []
-param subnetName string
-param virtualNetworkId string
 param virtualMachineName1 string = 'test-vm-server1'
 param virtualMachineComputerName1 string = 'test-vm-server1'
 param installscripturi string
@@ -95,9 +95,8 @@ var firstFileNameBreakString = split(firstFileNameString, '?')
 var firstFileName = firstFileNameBreakString[0]
 
 var nsgId = resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', networkSecurityGroupName)
-var vnetId = virtualNetworkId
-var vnetName = last(split(vnetId, '/'))
-var subnetRef = '${vnetId}/subnets/${subnetName}'
+var vnetName = last(split(virtualNetworkId, '/'))
+var subnetRef = '${virtualNetworkId}/subnets/${subnetName}'
 var diagnosticsExtensionName = 'Microsoft.Insights.VMDiagnosticsSettings'
 
 resource networkInterface1 'Microsoft.Network/networkInterfaces@2021-08-01' = {
@@ -264,7 +263,7 @@ resource vmName_CustomScriptExtension 'Microsoft.Compute/virtualMachines/extensi
 
 resource virtualMachineName1_diagnosticsExtension 'Microsoft.Compute/virtualMachines/extensions@2018-10-01' = {
   parent: virtualMachine1
-  name: '${diagnosticsExtensionName}'
+  name: diagnosticsExtensionName
   location: location
   properties: {
     publisher: 'Microsoft.Azure.Diagnostics'
@@ -277,7 +276,7 @@ resource virtualMachineName1_diagnosticsExtension 'Microsoft.Compute/virtualMach
         DiagnosticMonitorConfiguration: {
           overallQuotaInMB: 5120
           Metrics: {
-            resourceId: '/subscriptions/${subscription().subscriptionId}/resourceGroups/${resourceGroup().name}/providers/Microsoft.Compute/virtualMachines/${virtualMachineName1}'
+            resourceId: resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', virtualMachineName1)
             MetricAggregation: [
               {
                 scheduledTransferPeriod: 'PT1H'
