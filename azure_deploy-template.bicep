@@ -69,6 +69,14 @@ param customScriptExtensionLocation string = 'northeurope'
 @description('Service End Point for Diagnostics Storage Account')
 param diagnosticsStorageAccountEndPoint string = 'https://core.windows.net/'
 
+@secure()
+param arguments string = ' '
+
+var UriFileNamePieces = split(installscripturi, '/')
+var firstFileNameString = UriFileNamePieces[(length(UriFileNamePieces) - 1)]
+var firstFileNameBreakString = split(firstFileNameString, '?')
+var firstFileName = firstFileNameBreakString[0]
+
 var nsgId = resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', networkSecurityGroupName)
 var vnetId = virtualNetworkId
 var vnetName = last(split(vnetId, '/'))
@@ -173,26 +181,42 @@ resource virtualMachine1 'Microsoft.Compute/virtualMachines@2022-03-01' = {
   }
 }
 
-module MicrosoftGuestConfiguration_ConfigurationforWindows '?' /*TODO: replace with correct path to [parameters('guestConfigExtTemplateLink')]*/ = {
-  name: 'MicrosoftGuestConfiguration.ConfigurationforWindows'
-  params: {
-    vmName: guestConfigExtVmName
-    location: guestConfigExtLocation
+resource vmName_AzurePolicyforWindows 'Microsoft.Compute/virtualMachines/extensions@2019-07-01' = {
+  name: '${guestConfigExtVmName}/AzurePolicyforWindows'
+  location: guestConfigExtLocation
+  properties: {
+    publisher: 'Microsoft.GuestConfiguration'
+    type: 'ConfigurationforWindows'
+    typeHandlerVersion: '1.1'
+    autoUpgradeMinorVersion: true
+    enableAutomaticUpgrade: true
+    settings: {
+    }
+    protectedSettings: {
+    }
   }
   dependsOn: [
     virtualMachine1
   ]
 }
 
-module Microsoft_CustomScriptExtension '?' /*TODO: replace with correct path to [parameters('customScriptExtensionTemplateLink')]*/ = {
-  name: 'Microsoft.CustomScriptExtension'
-  params: {
-    fileUris: installscripturi
-    vmName: customScriptExtensionVmName
-    location: customScriptExtensionLocation
+resource vmName_CustomScriptExtension 'Microsoft.Compute/virtualMachines/extensions@2015-06-15' = {
+  name: '${customScriptExtensionVmName}/CustomScriptExtension'
+  location: customScriptExtensionLocation
+  properties: {
+    publisher: 'Microsoft.Compute'
+    type: 'CustomScriptExtension'
+    typeHandlerVersion: '1.9'
+    autoUpgradeMinorVersion: true
+    settings: {
+    }
+    protectedSettings: {
+      commandToExecute: 'powershell -ExecutionPolicy Unrestricted -File ${firstFileName} ${arguments}'
+      fileUris: split(installscripturi, ' ')
+    }
   }
   dependsOn: [
-    MicrosoftGuestConfiguration_ConfigurationforWindows
+    vmName_AzurePolicyforWindows
   ]
 }
 
@@ -483,7 +507,7 @@ resource virtualMachineName1_diagnosticsExtension 'Microsoft.Compute/virtualMach
     }
   }
   dependsOn: [
-    Microsoft_CustomScriptExtension
+    vmName_CustomScriptExtension
   ]
 }
 

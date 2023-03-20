@@ -23,9 +23,6 @@
         "diagnosticsStorageAccountId": {
             "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/testSQLvmRsg/providers/Microsoft.Storage/storageAccounts/sqlvmdiagnosticsstorage"
         },
-        "sqlAutobackupStorageAccountName": {
-            "value": "sqlvmautobackupsstorage"
-        },
         "installscripturi": {
             "value": "https://demirsblobstorage.blob.core.windows.net/scripts/configure-server.ps1?sp=r&st=2023-03-16T13:35:53Z&se=2023-03-30T20:35:53Z&spr=https&sv=2021-12-02&sr=b&sig=K%2FmdQqpshXzLk4VvPHdLwR0OJqoaMfxlxL7X7ae8EHM%3D"
         },
