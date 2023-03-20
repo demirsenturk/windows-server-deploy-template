@@ -19,6 +19,9 @@ param osDiskDeleteOption string = 'Delete'
 param virtualMachineSize string = 'Standard_B2s'
 param nicDeleteOption string = 'Detach'
 
+@description('licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None')
+param licenseType string = 'Windows_Server'
+
 @description('Username for the local admin in the Virtual Machine.')
 param adminUsername string
 
@@ -34,29 +37,8 @@ param rebootSetting string = 'Never'
 param diagnosticsStorageAccountName string
 param diagnosticsStorageAccountId string
 
-@description('licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None')
-param licenseType string = 'Windows_Server'
-
 @description('The name for the ip configuration of the Network Interface')
 param ipConfigName string = 'ipconfig1'
-
-@description('The name of the VM for guest configuration extension')
-param guestConfigExtVmName string = 'test-vm-server1'
-
-@description('Location for guest configuration extension')
-param guestConfigExtLocation string = 'northeurope'
-
-@description('File URI for Custom Script Extension for Windows')
-param customScriptExtensionTemplateUris string = 'https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1'
-
-@description('The name of the VM for Custom Script Extension for Windows')
-param customScriptExtensionVmName string = 'test-vm-server1'
-
-@description('Location for Custom Script Extension for Windows')
-param customScriptExtensionLocation string = 'northeurope'
-
-@description('Service End Point for Diagnostics Storage Account')
-param diagnosticsStorageAccountEndPoint string = 'https://core.windows.net/'
 
 param dataDisks1 array = [
   {
@@ -85,6 +67,24 @@ param dataDiskResources1 array = [
     }
   }
 ]
+
+@description('Service End Point for Diagnostics Storage Account')
+param diagnosticsStorageAccountEndPoint string = 'https://core.windows.net/'
+
+@description('The name of the VM for guest configuration extension')
+param guestConfigExtVmName string = 'test-vm-server1'
+
+@description('Location for guest configuration extension')
+param guestConfigExtLocation string = 'northeurope'
+
+@description('File URI for Custom Script Extension for Windows')
+param customScriptExtensionTemplateUris string = 'https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1'
+
+@description('The name of the VM for Custom Script Extension for Windows')
+param customScriptExtensionVmName string = 'test-vm-server1'
+
+@description('Location for Custom Script Extension for Windows')
+param customScriptExtensionLocation string = 'northeurope'
 
 @secure()
 param arguments string = ' '
@@ -276,7 +276,7 @@ resource virtualMachineName1_diagnosticsExtension 'Microsoft.Compute/virtualMach
         DiagnosticMonitorConfiguration: {
           overallQuotaInMB: 5120
           Metrics: {
-            resourceId: resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', virtualMachineName1)
+            resourceId: virtualMachine1.id
             MetricAggregation: [
               {
                 scheduledTransferPeriod: 'PT1H'
