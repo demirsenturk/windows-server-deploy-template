@@ -9,10 +9,6 @@
                 "description": "Location for the VMs, only certain regions support zones during preview."
             }
         },
-        "networkInterfaceName1": {
-            "defaultValue": "test-ni1198",
-            "type": "String"
-        },
         "enableAcceleratedNetworking": {
             "defaultValue": false,
             "type": "Bool"
@@ -60,6 +56,10 @@
                 "description": "VM Type in Azure: Standard_B2s or Standard_A2_v2 or Standard_F2s_v2, etc."
             }
         },
+        "networkInterfaceName1": {
+            "defaultValue": "test-ni1198",
+            "type": "String"
+        },
         "nicDeleteOption": {
             "defaultValue": "Detach",
             "type": "String"
@@ -104,21 +104,7 @@
                 "description": "licenseType must be Windows_Server to activate Azure Hybrid Benefit for Windows Server, otherwise None"
             }
         },
-        "KeyVaultCredentialName": {
-            "defaultValue": "",
-            "type": "String"
-        },
-        "KeyVaultCredentialEnable": {
-            "defaultValue": false,
-            "type": "Bool",
-            "metadata": {
-                "description": "Enable or disable key vault credential setting."
-            }
-        },
         "installscripturi": {
-            "type": "String"
-        },
-        "command2exec": {
             "type": "String"
         },
         "ipConfigName": {
@@ -154,13 +140,6 @@
             "type": "String",
             "metadata": {
                 "description": "Arm Template Link for Custom Script Extension for Windows"
-            }
-        },
-        "customScriptExtensionTemplateUris": {
-            "defaultValue": "https://sqlvmautobackupstorage.blob.core.windows.net/scripts/configure-server.ps1",
-            "type": "String",
-            "metadata": {
-                "description": "File URI for Custom Script Extension for Windows"
             }
         },
         "customScriptExtensionVmName": {

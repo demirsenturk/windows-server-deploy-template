@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subnetName": {
-            "value": "testsqlSubnet"
+            "value": "ws-server-subnet"
         },
         "virtualNetworkId": {
-            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/testSQLvmRsg/providers/Microsoft.Network/virtualNetworks/testsqlVN"
+            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/rsg-ws-server/providers/Microsoft.Network/virtualNetworks/ws-server-vnt"
         },
         "virtualMachineZone": {
             "value": []
@@ -18,16 +18,13 @@
             "value": "Password.101"
         },
         "diagnosticsStorageAccountName": {
-            "value": "sqlvmdiagnosticsstorage"
+            "value": "vmdiagnostics11"
         },
         "diagnosticsStorageAccountId": {
-            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/testSQLvmRsg/providers/Microsoft.Storage/storageAccounts/sqlvmdiagnosticsstorage"
+            "value": "/subscriptions/f7d63942-3e28-4475-88d5-b17e942f940b/resourceGroups/rsg-ws-server/providers/Microsoft.Storage/storageAccounts/vmdiagnostics11"
         },
         "installscripturi": {
-            "value": "https://demirsblobstorage.blob.core.windows.net/scripts/configure-server.ps1?sp=r&st=2023-03-16T13:35:53Z&se=2023-03-30T20:35:53Z&spr=https&sv=2021-12-02&sr=b&sig=K%2FmdQqpshXzLk4VvPHdLwR0OJqoaMfxlxL7X7ae8EHM%3D"
-        },
-        "command2exec": {
-            "value": "powershell.exe -ExecutionPolicy Unrestricted -File configure-server.ps1"
+            "value": "https://demirsblobstorage.blob.core.windows.net/scripts/configure-server.ps1?sp=r&st=2023-03-23T13:57:48Z&se=2023-04-08T20:57:48Z&spr=https&sv=2021-12-02&sr=b&sig=UWasIutaQSWEOAWBFKyJF5DVruCURpQ%2BFPSUiU8m3ys%3D"
         }
     }
 }
