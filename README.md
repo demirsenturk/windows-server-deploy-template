@@ -9,12 +9,9 @@ Below assumes using the Azure Cloud Shell (PowerShell), with AZ ACCOUNT SET poin
 ```Bash
 ex:  PS /home/clouduser> code ./azure_deploy-template.parameters.json
 ```
-* Step 2 - optional : Download locally and review / edit the configure-server.ps1 file to execute desired PowerShell script as desired
-                    note:  this will end up being the command to execute in the VM once started as an "extension"
+* Step 2: Create a new Resource Group in the location that matches the values in the parameters file
 
-* Step 3: Create a new Resource Group in the location that matches the values in the parameters file
-
-* Step 4: Deploy using the provided / uploaded script file
+* Step 3: Deploy using the provided / uploaded script file
 ```Bash
 PS /home/clouduser> az deployment group create --resource-group <name_resource_group> --template-file azure_deploy-template.bicep --parameters azure_deploy-template.parameters.json
 ```
