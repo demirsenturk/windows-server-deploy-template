@@ -20,6 +20,14 @@ This does not create a public IP, so you will need to either attach one on the N
 
 
 ## ARM DEPLOYMENT:
+
+Deploy using the Azure Portal by uploading the ARM json file & parameters contents
+using: 
+```Bash
+New > Template deployment (Deploy using custom templates)
+```
+or
+
 Below assumes using the Azure Cloud Shell (PowerShell), with AZ ACCOUNT SET pointing to the correct subscription. 
 
 * Step 1a: Copy the ARM template and parameter json files to your Azure Cloud Shell folder, as well as the deploy-vmazloop.ps1 file
@@ -37,14 +45,7 @@ ex:  PS /home/clouduser> code ./azure_deploy-template.parameters.json
 * Step 4: Deploy using the provided / uploaded PS script file
 ```Bash
 PS /home/clouduser> ./deploy-vmazloop.ps1
-```
-or 
-Deploy using the Azure Portal by uploading the ARM json file & parameters contents
-using: 
-```Bash
-New > Template deployment (Deploy using custom templates)
-```
-          
+```          
 This does not create a public IP, so you will need to either attach one on the NIC resource, or use a Bastion Host, or connect via RDP from another VM available on the target network. 
 
 ## TROUBLESHOOTING:
